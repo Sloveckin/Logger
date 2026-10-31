@@ -48,7 +48,7 @@ static int str_to_importance(const char* text, enum Importance* importance)
     Функции, которые не будут использованы в других файлах принято объявлять, как static
     static - "делает вашу функцию видимой только в данном файле"
 */
-static bool check_exist_command(const char* buffer)
+static bool check_exit_command(const char* buffer)
 {
     // Смотрим, является ли buffer командой для выхода
     if (strcmp(buffer, EXIT_COMMAND) == 0) 
@@ -76,7 +76,7 @@ static int read_importance(char* buffer, enum Importance* importance, bool* need
         }
 
         // Проверяем, является ли ввод командой для выхода из программы
-        if (check_exist_command(buffer) == true) {
+        if (check_exit_command(buffer) == true) {
             // Помечаем, что пользователь ввел команду для выхода
             *need_to_exit = true;
             return 0;
@@ -176,7 +176,7 @@ static int work(const enum Importance importance, const char* path_to_file)
         }
 
         // Ввёл ли пользователь EXIT_COMMAND
-        if (check_exist_command(buffer) == true) {
+        if (check_exit_command(buffer) == true) {
             break;
         }
 
